@@ -1,0 +1,97 @@
+/* inl_endpoint.ils    
+
+Compute the inl using the endpoint definition (first and last sample equals to 0)
+
+takes in a waveform input(k) and outputs a waveform inl(k)
+
+input(k)
+inl(k) = (input(k) - (adjustedOffset + adjustedLsb * k)) / adjustedLsb
+adjustedLsb = (input(end) - input(start)) / (end - start)
+
+
+inlEndpoint(waveform) - returns a best fit waveform
+
+
+**************************************************/
+
+(let ()
+
+  /***************************************************************
+  *                                                              *
+  *                        (adjusted lsb)                        *
+  *                                                              *
+  *     Internal function to compute the adjusted lsb            *
+  *                                                              *
+  ***************************************************************/
+
+  (defglobalfun inlEndpoint (wave)
+	(cond
+		((drIsWaveform wave)
+			/* get the x,y axis vector of the waveform*/
+			(setq xVec (drGetWaveformXVec wave))
+        		(setq yVec (drGetWaveformYVec wave))
+			/*get length of the vector, error shows up if I put extra parenthesis at the outside?*/
+        		setq(len (drVectorLength xVec))
+	
+			/*get first element*/
+			setq(firstEle (drGetElem yVec 0))
+			setq(adjustedOffset firstEle)
+			/*get last element*/
+			setq(lastEle (drGetElem yVec len-1))
+			/*in skill returns the value of the last line? seems like it*/
+			adjustedLsb = (lastEle - firstEle) / (len - 1)
+	
+			(setq newY (drCreateVec (drGetWaveformYType wave) len))
+
+			(for pos 0 (sub1 len)
+        		 	(drAddElem newY ( drGetElem(yVec pos) - (adjustedOffset + adjustedLsb * pos)) / adjustedLsb )
+			)
+		
+			(drCreateWaveform xVec newY)
+ 	)
+	((famIsFamily wave)
+     	  (famMap 'inlEndpoint wave)
+     	  )
+     	 (t
+      	  (error "inlEndpoint: cannot handle %L\n" wave)
+        	)
+      	)
+  )
+
+  (defglobalfun dnlEndpoint (wave)
+	 (cond
+	 	((drIsWaveform wave)
+			/* get the x,y axis vector of the waveform*/
+			(setq xVec (drGetWaveformXVec wave))
+        		(setq yVec (drGetWaveformYVec wave))
+			/*get length of the vector, error shows up if I put extra parenthesis at the outside?*/
+        		setq(len (drVectorLength xVec))
+	
+			/*get first element*/
+			setq(firstEle (drGetElem yVec 0))
+			/*get last element*/
+			setq(lastEle (drGetElem yVec len-1))
+			/*in skill returns the value of the last line? seems like it, and you want to be careful if it's put in parenthesis*/
+			adjustedLsb = (lastEle - firstEle) / (len - 1)
+	
+			(setq newY (drCreateVec (drGetWaveformYType wave) len))
+
+			/* dnl of index 0 is set to 1 */
+			drSetElem(newY 0 0.0)
+			(for pos 1 (sub1 len)
+        		 	(drAddElem newY ( drGetElem(yVec pos) - drGetElem(yVec (pos-1)) - adjustedLsb ) / adjustedLsb )
+			)		
+		
+			(drCreateWaveform xVec newY)
+       	 )
+	((famIsFamily wave)
+     	  (famMap 'dnlEndpoint wave)
+     	  )
+     	 (t
+      	  (error "dnlEndpoint: cannot handle %L\n" wave)
+        	)
+      	)
+  )
+  
+
+)

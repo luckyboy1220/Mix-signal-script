@@ -1,0 +1,33 @@
+// VerilogA for VerilogAcells, dectobin4, veriloga
+
+`include "constants.vams"
+`include "disciplines.vams"
+
+module dectobin4(in,out);
+input in;
+output [4:0] out;
+voltage [4:0] out;
+voltage in;
+
+parameter real vdda=3.3;
+
+integer i,waardein;
+integer  waardeuit[4:0];
+
+analog begin
+	waardein=floor(V(in));
+    for (i=0; i<5; i=i+1)
+		begin
+			waardeuit[i]=waardein%2;
+			waardein=floor(waardein/2);
+		end
+
+	V(out[4])<+transition(vdda*waardeuit[4],5p,10p);
+	V(out[3])<+transition(vdda*waardeuit[3],5p,10p);
+	V(out[2])<+transition(vdda*waardeuit[2],5p,10p);
+	V(out[1])<+transition(vdda*waardeuit[1],5p,10p);
+	V(out[0])<+transition(vdda*waardeuit[0],5p,10p);
+
+end
+
+endmodule
