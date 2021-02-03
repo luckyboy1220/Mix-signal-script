@@ -2,7 +2,7 @@
 
 Some script developed for the design of mix signal ic
 
-SatRnd.m : bit true with truncation/rounding/saturation/overflow modeling in MATLAB with fixed point binary format
+SatRnd.m : bit and cycle true with truncation/rounding/saturation/overflow modeling in MATLAB with fixed point binary format
 
 SatRnd_test.m : The unit test for SatRnd.m
 
