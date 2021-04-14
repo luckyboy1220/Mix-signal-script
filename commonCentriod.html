@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Common Centriod Calculator</title>
+    <link rel="stylesheet" href="commonCentriod.css">
+</head>
+<body>
+    <div class= "form-container">
+
+        <div class="form-group single-form-container">
+            <label for="stringSel">Type a string:</label>
+            <input type="text" id="stringSel" autocomplete="off" placeholder="Type the string here..."/>
+            <button id = "rst-btn">Reset</button>
+        </div>
+
+        <div class="form-group">
+            <label for="rowNumber"># of rows:</label>
+            <input type="number" id="rowNumber" placeholder="Type the rowNumber" value = "5" />
+        </div>
+        
+        <div class="form-group">
+            <label for="colNumber"># of columns:</label>
+            <input type="number" id="colNumber" placeholder="Type the colNumber" value = "10"/>
+            <button id = "submit-btn">Submit</button>
+        </div>
+
+
+    </div>
+
+    <h1>String Typed : <span id="stringTyped">?<span></h1>
+    <!-- <h1>The Great <span id = "ansColorInfo">RGB</span> color Game</h1> -->
+    <!-- <div id = info><span id = "infoStatus"></span></!-->
+    <div class="content">
+        <div id= "squareContainer">
+            <div class="square" id= "0"></div>
+            <div class="square" id= "1"></div>
+            <div class="square" id= "2"></div>
+            <div class="square" id= "3"></div>
+            <div class="square" id= "4"></div>
+            <div class="square" id= "5"></div>
+            <div class="square" id= "6"></div>
+            <div class="square" id= "7"></div>
+            <div class="square" id= "8"></div>
+            <div class="square" id= "9"></div>
+            <div class="square" id= "10"></div>
+            <div class="square" id= "11"></div>
+            <div class="square" id= "12"></div>
+            <div class="square" id= "13"></div>
+            <div class="square" id= "14"></div>
+            <div class="square" id= "15"></div>
+            <div class="square" id= "16"></div>
+            <div class="square" id= "17"></div>
+            <div class="square" id= "18"></div>
+            <div class="square" id= "19"></div>
+            <div class="square" id= "20"></div>
+            <div class="square" id= "21"></div>
+            <div class="square" id= "22"></div>
+            <div class="square" id= "23"></div>
+            <div class="square" id= "24"></div>
+            <div class="square" id= "25"></div>
+            <div class="square" id= "26"></div>
+            <div class="square" id= "27"></div>
+            <div class="square" id= "28"></div>
+            <div class="square" id= "29"></div>
+            <div class="square" id= "30"></div>
+            <div class="square" id= "31"></div>
+            <div class="square" id= "32"></div>
+            <div class="square" id= "33"></div>
+            <div class="square" id= "34"></div>
+            <div class="square" id= "35"></div>
+            <div class="square" id= "36"></div>
+            <div class="square" id= "37"></div>
+            <div class="square" id= "38"></div>
+            <div class="square" id= "39"></div>
+            <div class="square" id= "40"></div>
+            <div class="square" id= "41"></div>
+            <div class="square" id= "42"></div>
+            <div class="square" id= "43"></div>
+            <div class="square" id= "44"></div>
+            <div class="square" id= "45"></div>
+            <div class="square" id= "46"></div>
+            <div class="square" id= "47"></div>
+            <div class="square" id= "48"></div>
+            <div class="square" id= "49"></div>
+        </div>
+        <div id="ul-container">
+            <ul>
+                <!-- <li>Center of Mass: ( <span id="centerOfMassXDisplay"></span>, <span id="centerOfMassYDisplay"></span>)</li> -->
+            </ul>
+        </div>
+    </div>
+    <script src="commonCentriod.js"></script>
+</body>
+</html>

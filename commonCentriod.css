@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin:0; 
+}
+
+h1 {
+    color: Black;
+    text-align: center;
+}
+
+
+.form-container {
+    display: flex;
+    justify-content: space-around;
+    /* background-color: gray; */
+    border: 2px red solid;
+}
+
+.form-group {
+    /* display: flex; */
+    border: 1px green solid;
+    flex:1;
+}
+
+.single-form-group {
+    flex: 1;
+    border: 2px green solid;
+}
+
+#ul-container {
+    width: 500px;
+    margin:0 auto;
+}
+
+ul li {
+    list-style: none outside none;
+}
+
+#squareContainer {
+    width: 500px;
+    height: 250px;
+    border: 1px black solid;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.square {
+    box-sizing: border-box;
+    width : 48px;
+    height : 48px;
+    background: gray;
+    text-align: center;
+    line-height: 44px;
+    border: 1px solid red;
+    margin: 1px;
+}
